@@ -1,7 +1,7 @@
 <x-body>
     <x-header />
     <x-h3>Buat Buku</x-h3>
-    <form action="{{ route('buku.store') }}" method="POST" class="flex flex-col gap-3  w-full">
+    <form action="{{ route('buku.store') }}" method="POST" class="flex flex-col gap-3 w-full" enctype="multipart/form-data"?>
         @csrf
         <div class="flex flex-col gap-2 w-full">
             <x-label>Judul Buku</x-label>
@@ -32,6 +32,10 @@
                     <option value="{{ $k->id}}" class="text-gray-600 dark:text-gray-600 ">{{ $k->nama_kategori }}</option>
                 @endforeach
             </select> 
+        </div>
+        <div class="flex flex-col gap-2 w-full">
+            <x-label>Gambar Cover</x-label>
+            <input type="file" name="file_cover" id="" class="p-1.5 rounded-md w-full  border border-gray-800">
         </div>
         <x-submitbtn type="submit">Submit</x-submitbtn>
     </form>

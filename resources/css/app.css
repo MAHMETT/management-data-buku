@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    transition: all 0.2s ease-in-out;
+}
+
 body {
     background-color: #1e293b;
     color: white;
@@ -29,17 +33,22 @@ td {
     text-align: left;
     border: 1px solid #ddd;
 }
-
+th {
+    @apply text-white;
+}
+td {
+    @apply text-gray-900;
+}
 tbody tr:nth-child(odd) {
-    background-color: #1f2937;
+    background-color: #eeeeee;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #374151;
+    background-color: #cccccc;
 }
 
 tbody tr:hover {
-    background-color: #4b5563;
+    background-color: #b6b4b4;
 }
 
 th {

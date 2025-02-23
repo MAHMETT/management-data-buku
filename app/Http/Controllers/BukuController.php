@@ -6,6 +6,7 @@ use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\Penerbit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BukuController extends Controller
 {
@@ -41,13 +42,17 @@ class BukuController extends Controller
             'tahun_terbit' => 'required|integer:4',
             'kategori_id' => 'required',
             'penerbit_id' => 'required',
+            'file_cover' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('file_cover')) {
+            $validatedData['cover'] = $request->file('file_cover')->store('cover', 'public');
+        }
+        unset($validatedData['file_cover']);
         
         // simpan data
         Buku::create($validatedData);
         
-        // dd($request->all());
-
         // redirect ke index buku
         return redirect()->route('buku.index');
     }
@@ -82,7 +87,21 @@ class BukuController extends Controller
             'tahun_terbit' => 'required|integer:4',
             'kategori_id' => 'required',
             'penerbit_id' => 'required',
+            'file_cover' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('file_cover')) {
+            $validatedData['cover'] = $request->file('file_cover')->store('cover', 'public');
+
+            if ($request->cover_lama) {
+                Storage::delete('public/' . $request->cover_lama);
+            }
+        }
+        unset($validatedData['file_cover']);
+        
+        // simpan data
+        // Buku::create($validatedData);
+        
 
         // update data
         $buku->update($validatedData);
@@ -96,6 +115,11 @@ class BukuController extends Controller
      */
     public function destroy(Buku $buku)
     {
+        if ($buku->cover && Storage::exists('public/' . $buku->cover)) {
+            Storage::delete('public/' . $buku->cover);
+        }
+
+        // proses delete
         $buku->delete();
         // redirect ke index buku
         return redirect()->route('buku.index');

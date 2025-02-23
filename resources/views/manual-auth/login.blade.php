@@ -1,4 +1,4 @@
-<x-body titlePage="Login" widthCont="min-w-[25rem]">
+<x-body-auth titlePage="Login" >
     <h1 class="text-3xl font-bold text-gray-900">Login</h1>
     <form action="{{ route('loginProsses') }}" method="post" class="flex flex-col gap-3 w-full">
         @csrf
@@ -12,4 +12,4 @@
         </div>
         <x-submitbtn type="submit">Login</x-submitbtn>
     </form>
-</x-body>
+</x-body-auth>

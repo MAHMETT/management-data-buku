@@ -6,12 +6,11 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Body extends Component
+class BodyAuth extends Component
 {
     /**
      * Create a new component instance.
      */
-
     public $titlePage;
     public function __construct( $titlePage = 'Aplikasi Managemen Data Buku' )
     {
@@ -24,6 +23,6 @@ class Body extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.body');
+        return view('components.body-auth');
     }
 }

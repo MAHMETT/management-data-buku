@@ -1,7 +1,7 @@
 <x-body>
     <x-header />
     <x-h3>Edit Buku</x-h3>
-    <form action="{{ route('buku.update', $buku->id) }}" method="POST" class="flex flex-col gap-3  w-full">
+    <form action="{{ route('buku.update', $buku->id) }}" method="POST" class="flex flex-col gap-3  w-full" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="flex flex-col gap-2 w-full">
@@ -34,6 +34,14 @@
                 @endforeach
             </select> 
         </div>
+        <div class="flex flex-col gap-2 w-full">
+            <x-label>Gambar Cover</x-label>
+            @if ($buku->cover)
+                <img src="{{ asset('storage/' . $buku->cover) }}" alt="Cover Lama" width="100">
+            @endif
+            <input type="file" name="file_cover" id="" class="p-1.5 rounded-md w-full  border border-gray-800">
+        </div>
+        <input type="hidden" name="cover_lama" value="{{ $buku->cover }}">
         <x-submitbtn type="submit">Update</x-submitbtn>
     </form>
 

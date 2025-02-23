@@ -4,8 +4,13 @@
         <div class="flex flex-col w-full justify-start">
             <x-h3>Buku</x-h3>
         </div>
+        @if ($buku->cover)
+            <div class="text-center border border-gray-900 rounded-md p-2 max-w-[45rem] max-h-[25]">
+                <img src="{{ asset('storage/' . $buku->cover) }}" alt="">
+            </div>
+        @endif
         <table>
-            <tbody>
+            <tbody id="tr">
                 <tr>
                     <td>Judul Buku</td>
                     <td>:</td>
