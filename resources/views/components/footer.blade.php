@@ -1,0 +1,1 @@
+<div class="text-sm">&copy; 2025 Muhamat Jayakusuma</div>
