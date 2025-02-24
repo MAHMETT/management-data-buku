@@ -6,10 +6,10 @@
     transition: all 0.2s ease-in-out;
 }
 
-body {
+/* body {
     background-color: #1e293b;
     color: white;
-}
+} */
 
 input {
     color: black;

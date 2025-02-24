@@ -1,13 +1,13 @@
 <div class="w-full flex flex-col justify-center items-center gap-3">
 <h1 class="text-2xl font-bold text-gray-900">Managemen Data Buku</h1>
 @if (Auth::check())
-<div class="w-full flex flex-col justify-center items-center gap-3">
-    <p class="text-gray-900">Anda login sebagai <strong>{{ Auth::user()->name }}</strong></p>
-    <form action="{{ route('logout')}}" method="post">
-        @csrf
-        <x-submitbtn bg="red">Logout</x-submitbtn>
-    </form>
-</div>
+    <div class="w-full flex flex-col justify-center items-center gap-3">
+        <p class="text-gray-900">Anda login sebagai <strong>{{ Auth::user()->name }}</strong></p>
+        <form action="{{ route('logout')}}" method="post">
+            @csrf
+            <x-submitbtn bg="red">Logout</x-submitbtn>
+        </form>
+    </div>
 @endif
 <div class="flex text-white">
     <ul class="flex gap-3">

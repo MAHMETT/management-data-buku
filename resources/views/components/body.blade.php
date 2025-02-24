@@ -7,7 +7,7 @@
     <title>{{ $titlePage }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="flex min-h-screen justify-center items-center gap-5">
+<body class="flex min-h-screen justify-center items-center gap-5 bg-gray-800">
     <div class="flex flex-col max-w-[75rem] min-w-[75rem] gap-4 justify-center items-center bg-white p-5 shadow-md rounded-xl">
     {{ $slot }}
     </div>
