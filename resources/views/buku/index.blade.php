@@ -27,7 +27,7 @@
             <tbody>
                 @foreach ($allBuku as $key => $r)
                 <tr>
-                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $key + $allBuku->firstItem() }}</td>
                     <td>
                         @if ($r->cover)
                             <img src="{{ asset('storage/' . $r->cover) }}" alt="Cover" width="100">
