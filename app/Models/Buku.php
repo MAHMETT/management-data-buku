@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Buku extends Model
 {
+    use HasFactory;
     protected $guarded = [];
 
     public function kategori(): BelongsTo {
@@ -18,7 +19,6 @@ class Buku extends Model
         return $this->belongsTo(Penerbit::class);
     }
 
-    // use HasFactory;
 
     // // Field yang boleh diisi secara massal
     // protected $fillable = [

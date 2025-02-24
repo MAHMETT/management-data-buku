@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Buku;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,10 +17,12 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Mahmett',
-            'email' => 'memet@gmail.com',
-            'password' => Hash::make('kemettt'),
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Mahmett',
+        //     'email' => 'memet@gmail.com',
+        //     'password' => Hash::make('kemettt'),
+        // ]);
+
+        Buku::factory()->count(50)->create();
     }
 }

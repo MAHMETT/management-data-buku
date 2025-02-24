@@ -46,6 +46,8 @@
                 @endforeach
             </tbody>
         </table>
-        
+        <div>
+            {{ $allBuku->links('vendor.pagination.tailwind') }}
+        </div>
         <x-footer />
     </x-body>
