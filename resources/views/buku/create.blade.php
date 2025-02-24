@@ -1,5 +1,4 @@
 <x-body>
-    <x-header />
     <x-h3>Buat Buku</x-h3>
     <form action="{{ route('buku.store') }}" method="POST" class="flex flex-col gap-3 w-full" enctype="multipart/form-data"?>
         @csrf
@@ -39,6 +38,4 @@
         </div>
         <x-submitbtn type="submit">Submit</x-submitbtn>
     </form>
-
-    <x-footer />
 </x-body>

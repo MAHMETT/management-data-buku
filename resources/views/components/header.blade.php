@@ -1,18 +1,19 @@
-<div class="w-full flex flex-col justify-center items-center gap-3">
-<h1 class="text-2xl font-bold text-gray-900">Managemen Data Buku</h1>
-@if (Auth::check())
-    <div class="w-full flex flex-col justify-center items-center gap-3">
-        <p class="text-gray-900">Anda login sebagai <strong>{{ Auth::user()->name }}</strong></p>
-        <form action="{{ route('logout')}}" method="post">
-            @csrf
-            <x-submitbtn bg="red">Logout</x-submitbtn>
-        </form>
+<header class="bg-white flex items-center justify-between p-4">
+    <h1 class="text-xl font-bold">Dashboard</h1>
+    <div class="flex items-center space-x-4">
+        <div class="relative group">
+            <button class="flex items-center focus:outline-none gap-2">
+                <img
+                    src="https://via.placeholder.com/40"
+                    alt="Profil"
+                    class="w-10 h-10 rounded-full"
+                />
+                <span class="text-gray-700 font-medium">
+                    {{ Auth::user()->name }}
+                </span>
+            </button>
+            {{-- DropDown --}}
+            <x-dropdown />
+        </div>
     </div>
-@endif
-<div class="flex text-white">
-    <ul class="flex gap-3">
-    <li><x-a href="/kategori">Kategori</x-a></li>
-    <li><x-a href="/penerbit">Penerbit</x-a></li>
-    <li><x-a href="/buku">Buku</x-a></li>
-</div>
-</div>
+</header>

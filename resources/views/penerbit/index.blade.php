@@ -1,6 +1,5 @@
 <x-body>
-    <x-header />
-        <div class="flex flex-col w-full justify-start">
+        <div class="flex flex-col w-full justify-start gap-5">
             <x-h3>Penerbit</x-h3>
             <x-a href="{{ route('penerbit.create') }}">Tambah</x-a>
         </div>
@@ -31,5 +30,4 @@
                 @endforeach
             </tbody>
         </table>
-    <x-footer />
 </x-body>

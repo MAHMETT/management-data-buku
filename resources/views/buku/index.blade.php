@@ -1,7 +1,5 @@
     <x-body>
-
-        <x-header />
-        <div class="flex flex-col w-full justify-start">
+        <div class="flex flex-col w-full justify-start gap-5">
             <x-h3>Buku</x-h3>
             <div class="flex justify-between">
                 <x-a href="{{ route('buku.create') }}">Tambah</x-a>
@@ -52,8 +50,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div>
+        <div class="flex py-2 justify-center w-full">
             {{ $allBuku->links('vendor.pagination.tailwind') }}
         </div>
-        <x-footer />
-    </x-body>
+</x-body>
