@@ -17,9 +17,12 @@ class BukuController extends Controller
     {   
         $query = $request->input('q');
 
+
         if ($query) {
             $allBuku = Buku::when($query, function($queryBuilder) use ($query){
-                $queryBuilder->where('judul', 'like', '%' . $query . '%');
+                $queryBuilder->where('judul', 'like', '%' . $query . '%')
+                ->orWhere('pengarang', 'like', '%' . $query . '%')
+                ->orWhere('tahun_terbit', 'like', '%' . $query . '%');
             })->paginate(5);
 
             $allBuku->appends(['q' => $query]);
