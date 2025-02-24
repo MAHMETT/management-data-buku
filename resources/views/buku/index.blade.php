@@ -3,7 +3,13 @@
         <x-header />
         <div class="flex flex-col w-full justify-start">
             <x-h3>Buku</x-h3>
-            <x-a href="{{ route('buku.create') }}">Tambah</x-a>
+            <div class="flex justify-between">
+                <x-a href="{{ route('buku.create') }}">Tambah</x-a>
+                <form action="{{ route('buku.index') }}" method="get" class="flex gap-2">
+                    <input type="text" name="q" id="" class="p-1.5 rounded-md w-full  border border-gray-800" placeholder="Judul Buku...">
+                    <x-submitbtn type="submit">Search</x-submitbtn>
+                </form>
+            </div>
         </div>
         <table>
             <thead>
