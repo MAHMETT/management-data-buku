@@ -3,42 +3,20 @@
         Panel Admin
     </div>
     <nav class="flex-1">
-        <ul class="space-y-2 p-4">
-            <a
-                href="{{ route('dashboard') }}"
-                class="flex items-center p-2 rounded hover:bg-gray-700 gap-2"
-            >
-                <x-icon>dashboard</x-icon>
-                <span>Dashboard</span>
-            </a>
-        </ul>
-        <ul class="space-y-2 p-4">
-            <a
-                href="{{ route('kategori.index') }}"
-                class="flex items-center p-2 rounded hover:bg-gray-700 gap-2"
-            >
-                <x-icon>folder</x-icon>
-                <span>Kategori</span>
-            </a>
-        </ul>
-        <ul class="space-y-2 p-4">
-            <a
-                href="{{ route('penerbit.index') }}"
-                class="flex items-center p-2 rounded hover:bg-gray-700 gap-2"
-            >
-                <x-icon>newspaper</x-icon>
-                <span>Penerbit</span>
-            </a>
-        </ul>
-        <ul class="space-y-2 p-4">
-            <a
-                href="{{ route('buku.index') }}"
-                class="flex items-center p-2 rounded hover:bg-gray-700 gap-2"
-            >
-                <x-icon>menu_book</x-icon>
-                <span>Buku</span>
-            </a>
-        </ul>
+        <x-menu href="{{ route('dashboard') }}" icon="dashboard">
+            Dashboard
+        </x-menu>
+        <x-menu href="{{ route('kategori.index') }}" icon="folder">
+            Kategori
+        </x-menu>
+        <x-menu href="{{ route('penerbit.index') }}" icon="newspaper">
+            Penerbit
+        </x-menu>
+        <x-menu href="{{ route('buku.index') }}" icon="book">Buku</x-menu>
+        <x-menu href="{{ route('anggota.index') }}" icon="people">
+            Anggota
+        </x-menu>
+        <x-menu href="#" icon="people">Peminjaman Buku</x-menu>
     </nav>
     @if (Auth::check())
         <div class="w-full flex justify-center items-center gap-3 p-2">
