@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthManualController extends Controller
 {
@@ -25,8 +26,11 @@ class AuthManualController extends Controller
             $request->session()->regenerate();
             return redirect()->route('kategori.index');
         }
+
+        // Alert::alert('Gagal', 'Email atau Password anda salah', 'error');
+        Alert::error('Gagal', 'Email atau Password anda salah');
         
-        return back()->with('error', 'Email atau password salah');
+        return back();
     }
 
     public function logout(Request $request){
