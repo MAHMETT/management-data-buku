@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anggota;
+use App\Models\Buku;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,9 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        //
+        $allPeminjaman = Peminjaman::all();
+
+        return view('peminjaman.index', compact('allPeminjaman'));
     }
 
     /**
@@ -20,7 +24,10 @@ class PeminjamanController extends Controller
      */
     public function create()
     {
-        //
+        $anggota = Anggota::all();
+        $bukus = Buku::all();
+
+        return view('peminjaman.create', compact('anggota','bukus'));
     }
 
     /**
@@ -28,15 +35,32 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valData = $request->validate([
+            'tgl_peminjaman' => 'required|date',
+            'anggota_id' => 'required',
+            'buku_ids' => 'required|array',
+            'buku_ids.*' => 'exists:bukus,id'
+        ]);
+
+        $peminjaman = Peminjaman::create([
+            'anggota_id' => $request->anggota_id,
+            'tgl_peminjaman' => $request->tgl_peminjaman,
+            'status_peminjaman' => 'Dipinjam',
+        ]);
+
+        $peminjaman->buku()->attach($request->buku_ids);
+
+        return redirect()->route('peminjaman.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Peminjaman $peminjaman)
+    public function show($id)
     {
-        //
+        $peminjaman = Peminjaman::with('anggota','buku')->findOrFail($id);
+
+        return view('peminjaman.show',compact('peminjaman'));
     }
 
     /**
@@ -52,7 +76,16 @@ class PeminjamanController extends Controller
      */
     public function update(Request $request, Peminjaman $peminjaman)
     {
-        //
+        $request->validate(['tgl_peminjaman' => 'date']);
+
+        $peminjaman = Peminjaman::find($peminjaman->id);
+
+        $peminjaman->update([
+            'tgl_peminjaman' => $request->tgl_kembali,
+            'status_peminjaman' => 'Dikembalikan', 
+        ]);
+
+        return redirect()->route('peminjaman.index');
     }
 
     /**
@@ -60,6 +93,8 @@ class PeminjamanController extends Controller
      */
     public function destroy(Peminjaman $peminjaman)
     {
-        //
+        $peminjaman->delete();
+
+        return redirect()->route('peminjaman.indedx');
     }
 }

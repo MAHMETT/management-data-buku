@@ -12,9 +12,11 @@ class Head extends Component
      * Create a new component instance.
      */
     public $href;
-    public function __construct($href = '#')
+    public $btn;
+    public function __construct($href = '#' , $btn = 'Kembali')
     {
         $this->href = $href;
+        $this->btn = $btn;
     }
 
     /**

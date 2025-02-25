@@ -16,7 +16,9 @@
         <x-menu href="{{ route('anggota.index') }}" icon="people">
             Anggota
         </x-menu>
-        <x-menu href="#" icon="people">Peminjaman Buku</x-menu>
+        <x-menu href="{{  route('peminjaman.index') }}" icon="people">
+            Peminjaman Buku
+        </x-menu>
     </nav>
     @if (Auth::check())
         <div class="w-full flex justify-center items-center gap-3 p-2">
