@@ -18,6 +18,8 @@
                 <tr>
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $r->nama_anggota }}</td>
+                    <td>{{ $r->alamat }}</td>
+                    <td>{{ $r->no_telpon }}</td>
                     <td>
                         <form action="{{ route('anggota.destroy', $r->id) }}" method="POST" class="flex gap-2">
                             <x-a href="{{ route('anggota.show', $r->id) }}">Detail</x-a>

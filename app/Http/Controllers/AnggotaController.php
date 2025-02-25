@@ -29,7 +29,15 @@ class AnggotaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valData = request()->validate([
+            'nama_anggota' => 'required',
+            'alamat' => 'required',
+            'no_telpon' => 'required',
+        ]);
+
+        Anggota::create($valData);
+
+        return redirect()->route('anggota.index');
     }
 
     /**
@@ -37,7 +45,7 @@ class AnggotaController extends Controller
      */
     public function show(Anggota $anggota)
     {
-        //
+        return view('anggota.show',compact('anggota'));
     }
 
     /**
@@ -45,7 +53,7 @@ class AnggotaController extends Controller
      */
     public function edit(Anggota $anggota)
     {
-        //
+        return view('anggota.edit ',compact('anggota'));
     }
 
     /**
@@ -53,7 +61,15 @@ class AnggotaController extends Controller
      */
     public function update(Request $request, Anggota $anggota)
     {
-        //
+        $valData = request()->validate([
+            'nama_anggota' => 'required',
+            'alamat' => 'required',
+            'no_telpon' => 'required',
+        ]);
+
+        $anggota->update($valData);
+
+        return redirect()->route('anggota.index');
     }
 
     /**
@@ -61,6 +77,8 @@ class AnggotaController extends Controller
      */
     public function destroy(Anggota $anggota)
     {
-        //
+        $anggota->delete();
+
+        return redirect()->route('anggota.index');
     }
 }

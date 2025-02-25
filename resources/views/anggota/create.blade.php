@@ -1,5 +1,5 @@
 <x-body>
-    <x-h3>Buat Anggota</x-h3>
+    <x-head href="{{ route('anggota.index') }}">Buat Anggota</x-head>
     <form
         action="{{ route('anggota.store') }}"
         method="POST"

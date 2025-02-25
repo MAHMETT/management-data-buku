@@ -15,7 +15,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('kategori', KategoriController::class);
     Route::resource('penerbit', PenerbitController::class);
     Route::resource('buku', BukuController::class);
-    Route::resource('anggota', AnggotaController::class);
+    Route::resource('anggota', AnggotaController::class)->parameters(['anggota' => 'anggota']);
 });
 
 // Route untuk authentication
