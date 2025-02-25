@@ -15,6 +15,10 @@ class AuthManualController extends Controller
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+        ],[
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Format email harus benar',
+            'password.required' => 'Password wajub diisi',
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -22,7 +26,7 @@ class AuthManualController extends Controller
             return redirect()->route('kategori.index');
         }
         
-        return back();
+        return back()->with('error', 'Email atau password salah');
     }
 
     public function logout(Request $request){
