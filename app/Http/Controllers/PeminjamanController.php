@@ -95,6 +95,6 @@ class PeminjamanController extends Controller
     {
         $peminjaman->delete();
 
-        return redirect()->route('peminjaman.indedx');
+        return redirect()->route('peminjaman.index');
     }
 }
