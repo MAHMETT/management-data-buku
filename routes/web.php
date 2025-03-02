@@ -8,7 +8,11 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PenerbitController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('dashboard');
+
+Route::middleware(['auth'])->get('/', function(){
     return view('welcome');
 })->name('dashboard');
 

@@ -6,6 +6,7 @@ use App\Models\Anggota;
 use App\Models\Buku;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PeminjamanController extends Controller
 {
@@ -24,8 +25,8 @@ class PeminjamanController extends Controller
      */
     public function create()
     {
-        $anggota = Anggota::all();
-        $bukus = Buku::all();
+            $anggota = Anggota::all();
+            $bukus = Buku::all();
 
         return view('peminjaman.create', compact('anggota','bukus'));
     }
@@ -40,6 +41,9 @@ class PeminjamanController extends Controller
             'anggota_id' => 'required',
             'buku_ids' => 'required|array',
             'buku_ids.*' => 'exists:bukus,id'
+        ],[
+            'anggota_id.required' => 'Anggota harus dipilih',
+            'buku_ids.required' => 'Buku harus dipilih',
         ]);
 
         $peminjaman = Peminjaman::create([
@@ -47,7 +51,7 @@ class PeminjamanController extends Controller
             'tgl_peminjaman' => $request->tgl_peminjaman,
             'status_peminjaman' => 'Dipinjam',
         ]);
-
+        Alert::toast('Peminjaman Berhasil ditambahkan', 'success')->autoClose(5000);
         $peminjaman->buku()->attach($request->buku_ids);
 
         return redirect()->route('peminjaman.index');
@@ -68,7 +72,9 @@ class PeminjamanController extends Controller
      */
     public function edit(Peminjaman $peminjaman)
     {
-        //
+        $anggota = Anggota::all();
+        $bukus = Buku::all();
+        return view('peminjaman.edit',compact('peminjaman','anggota','anggota','bukus'));
     }
 
     /**
@@ -82,8 +88,9 @@ class PeminjamanController extends Controller
 
         $peminjaman->update([
             'tgl_peminjaman' => $request->tgl_kembali,
-            'status_peminjaman' => 'Dikembalikan', 
+            'status_peminjaman' => 'Dikembalikan',
         ]);
+        Alert::toast('Berhasil mengembalikan buku', 'success')->autoClose(5000);
 
         return redirect()->route('peminjaman.index');
     }
@@ -93,6 +100,7 @@ class PeminjamanController extends Controller
      */
     public function destroy(Peminjaman $peminjaman)
     {
+        Alert::toast('Berhasil menghapus peminjaman', 'success')->autoClose(5000);
         $peminjaman->delete();
 
         return redirect()->route('peminjaman.index');

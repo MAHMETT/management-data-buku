@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Penerbit;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PenerbitController extends Controller
 {
@@ -32,7 +33,11 @@ class PenerbitController extends Controller
         // buat validasi
         $validatedData = $request->validate([
             'nama_penerbit' => 'required|max:100'
+        ],[
+            'nama_penerbit.required'=> 'Nama penerbit harus diisi',
         ]);
+
+        Alert::toast('Berhasil menambahkan Penerbit', 'success')->autoClose(5000);
 
         // simpan data
         Penerbit::create($validatedData);
@@ -65,7 +70,12 @@ class PenerbitController extends Controller
         // buat validasi
         $validatedData = $request->validate([
             'nama_penerbit' => 'required|max:100'
+        ],[
+            'nama_penerbit.required'=> 'Nama penerbit harus diisi'
         ]);
+
+        // Toast
+        Alert::toast('Berhasil mengupdate penerbit', 'success')->autoClose(5000);
 
         // update data
         $penerbit->update($validatedData);
@@ -79,6 +89,7 @@ class PenerbitController extends Controller
      */
     public function destroy(Penerbit $penerbit)
     {
+        Alert::toast('Berhasil menghapus penerbit', 'success')->autoClose(5000);
         $penerbit->delete();
         // redirect ke index penerbit
         return redirect()->route('penerbit.index');

@@ -16,6 +16,9 @@
                 value="{{ $penerbit->nama_penerbit }}"
                 class="p-1.5 rounded-md w-full border border-gray-800"
             />
+            @error('nama_penerbit')
+                <div class="text-red-500 text-sm">{{ $message }}</div>
+            @enderror
         </div>
         <x-submitbtn type="submit">Update</x-submitbtn>
     </form>

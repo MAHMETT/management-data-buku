@@ -15,6 +15,9 @@
                 placeholder="Masukkan nama anggota"
                 class="p-1.5 rounded-md w-full border border-gray-800 focus:border-black"
             />
+            @error('nama_anggota')
+                <div class="text-red-500 text-sm">{{ $message }}</div>
+            @enderror
         </div>
         <div class="flex flex-col gap-2 w-full">
             <x-label>Alamat</x-label>
@@ -25,6 +28,9 @@
                 placeholder="Masukkan Alamat "
                 class="p-1.5 rounded-md w-full border border-gray-800 focus:border-black"
             />
+            @error('alamat')
+                <div class="text-red-500 text-sm">{{ $message }}</div>
+            @enderror
         </div>
         <div class="flex flex-col gap-2 w-full">
             <x-label>No. Telepon</x-label>
@@ -35,6 +41,9 @@
                 placeholder="Masukkan No. Telepon "
                 class="p-1.5 rounded-md w-full border border-gray-800 focus:border-black"
             />
+            @error('no_telpon')
+                <div class="text-red-500 text-sm">{{ $message }}</div>
+            @enderror
         </div>
         <x-submitbtn type="submit">Submit</x-submitbtn>
     </form>

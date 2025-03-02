@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Anggota;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AnggotaController extends Controller
 {
@@ -33,7 +34,13 @@ class AnggotaController extends Controller
             'nama_anggota' => 'required',
             'alamat' => 'required',
             'no_telpon' => 'required',
+        ],[
+            'nama_anggota.required'=> 'Nama anggota harus diisi',
+            'alamat.required'=> 'Alamat harus diisi',
+            'no_telpon.required'=> 'No telpon harus diisi',
         ]);
+
+        Alert::toast('Anggota berhasil ditambahkan', 'success')->autoClose(5000);
 
         Anggota::create($valData);
 
@@ -53,7 +60,7 @@ class AnggotaController extends Controller
      */
     public function edit(Anggota $anggota)
     {
-        return view('anggota.edit ',compact('anggota'));
+        return view('anggota.edit',compact('anggota'));
     }
 
     /**
@@ -65,7 +72,13 @@ class AnggotaController extends Controller
             'nama_anggota' => 'required',
             'alamat' => 'required',
             'no_telpon' => 'required',
+        ],[
+            'nama_anggota'=> 'Nama anggota harus diisi',
+            'alamat.required'=> 'Alamat harus diisi',
+            'no_telpon'=> 'No telpon harus diisi',
         ]);
+
+        Alert::toast('Anggota telah berhasil diupdate', 'success')->autoClose(5000);
 
         $anggota->update($valData);
 
@@ -77,6 +90,8 @@ class AnggotaController extends Controller
      */
     public function destroy(Anggota $anggota)
     {
+        Alert::toast('Anggota telah berhasil dihapus', 'success')->autoClose(5000);
+
         $anggota->delete();
 
         return redirect()->route('anggota.index');

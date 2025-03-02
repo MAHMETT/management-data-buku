@@ -17,6 +17,9 @@
                 value="{{ $buku->judul }}"
                 class="p-1.5 rounded-md w-full border border-gray-800"
             />
+            @error('judul')
+                <div class="text-red-500 text-sm">{{ $message }}</div>
+            @enderror
         </div>
         <div class="flex flex-col gap-2 w-full">
             <x-label>Pengarang</x-label>
@@ -27,6 +30,9 @@
                 value="{{ $buku->pengarang }}"
                 class="p-1.5 rounded-md w-full border border-gray-800"
             />
+            @error('pengarang')
+                <div class="text-red-500 text-sm">{{ $message }}</div>
+            @enderror
         </div>
         <div class="flex flex-col gap-2 w-full">
             <x-label>Tahun Terbit</x-label>
@@ -37,6 +43,9 @@
                 value="{{ $buku->tahun_terbit }}"
                 class="p-1.5 rounded-md w-full border border-gray-800"
             />
+            @error('tahun_terbit')
+                <div class="text-red-500 text-sm">{{ $message }}</div>
+            @enderror
         </div>
         <div class="flex flex-col gap-2 w-full">
             <x-label>Penerbit</x-label>
@@ -63,6 +72,9 @@
                     </option>
                 @endforeach
             </select>
+            @error('penerbit_id')
+                <div class="text-red-500 text-sm">{{ $message }}</div>
+            @enderror
         </div>
         <div class="flex flex-col gap-2 w-full">
             <x-label>Kategori</x-label>
@@ -89,6 +101,9 @@
                     </option>
                 @endforeach
             </select>
+            @error('penerbit_id')
+                <div class="text-red-500 text-sm">{{ $message }}</div>
+            @enderror
         </div>
         <div class="flex flex-col gap-2 w-full">
             <x-label>Gambar Cover</x-label>

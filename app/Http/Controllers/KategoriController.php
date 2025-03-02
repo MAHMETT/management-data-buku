@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KategoriController extends Controller
 {
@@ -32,8 +33,10 @@ class KategoriController extends Controller
         // buat validasi
         $validatedData = $request->validate([
             'nama_kategori' => 'required|max:100'
+        ],[
+            'nama_kategori.required'=> 'Nama kategori harus diisi',
         ]);
-
+        Alert::toast('Berhasil menambahkan kategori', 'success')->autoClose(5000);
         // simpan data
         Kategori::create($validatedData);
 
@@ -65,8 +68,11 @@ class KategoriController extends Controller
         // buat validasi
         $validatedData = $request->validate([
             'nama_kategori' => 'required|max:100'
+        ],[
+            'nama_kategori.required'=> 'Nama kategori harus diisi',
         ]);
 
+        Alert::toast('Berhasil mengupdate kategori', 'success')->autoClose(5000);
         // update data
         $kategori->update($validatedData);
 
